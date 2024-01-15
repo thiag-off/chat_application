@@ -54,7 +54,6 @@ CHANNEL_LAYERS = {
         "BACKEND" : "channels_redis.core.RedisChannelLayer",
         "CONFIG":{
             'hosts':[str(os.getenv('REDIS_KEY'))],
-            "SECURE" : True,
         },
     },
 }
