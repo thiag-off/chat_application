@@ -1,0 +1,83 @@
+body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: #121212;
+   color: white;
+   font-family: 'Century Gothic', sans-serif;
+   margin: 1em/2;
+   margin-top: 2em;
+ }
+ 
+ .container {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   height: 80vh;
+   width: 600px;   
+   background-color: #1F1F1F;
+   border-radius: 10px;
+   padding: 20px;
+   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+ }
+ 
+ .top-text {
+   display: flex;
+
+   
+  }
+ #messages {
+   display: flex;
+   flex-direction: column-reverse;
+   flex: 2;
+   overflow-y: auto;   
+   font-family: 'Kanit', sans-serif;
+   color: white;
+   
+ }
+ 
+ #form {
+   display: flex;
+   justify-content: space-between;
+   
+ }
+ 
+ #form input[name="message"] {
+
+   flex: 1;
+   margin: 1em;
+   padding: 10px;
+   border-radius: 25px;
+   border: 1px solid #ddd;
+   background-color: #444444;
+   color: #FFFFFF;
+   
+   font-family: 'Kanit', sans-serif;
+ }
+
+ .chat-box {
+   display: flex;
+   flex-direction: column;
+   overflow-y: auto;
+  
+
+
+  }
+  #messages {
+   scrollbar-width: thin;
+   scrollbar-color: #444444 #1F1F1F;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  #messages::-webkit-scrollbar {
+   width: 10px;
+  }
+  
+  #messages::-webkit-scrollbar-track {
+   background: #1F1F1F;
+  }
+  
+  #messages::-webkit-scrollbar-thumb {
+   background-color: #444444;
+   border-radius: 5px;
+  }
