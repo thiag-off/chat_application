@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Rooms:</h1>
+    <input id="room-name-input" type="text" size="100">
+    <input id="room-name-submit" type="button" value="Enter">
+
+    <script lang="text/javascript">
+        document.querySelector('#room-name-input').focus();
+        document.querySelector('#room-name-submit').onkeyup = function(e){
+            if(e.keyCode === 13){
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+
+        document.querySelector('#room-name-submit').onclick = function(e){
+            var roomName = document.querySelector('#room-name-input').value;
+            window.location.pathname = '/'+ roomName + '/';
+        };
+    </script>
+</body>
+</html>

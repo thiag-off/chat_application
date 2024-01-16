@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/styles.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Century+Gothic&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Kanit&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <div class="top-text">
+            <h1>Lets Chat !!</h1>
+            {{ room_name|json_script:"room-name" }}        
+        </div>
+        <div class="chat-box">            
+            <div id="messages"></div>
+            <form id = "form">
+                <input type="text" name="message"/>
+            </form>
+        </div>    
+    </div>    
+        <script lang="text/javascript">
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);   
+        let url = `ws://${window.location.host}/ws/socket-server/${roomName}/`
+        const chatSocket = new WebSocket(url)
+        
+        chatSocket.onmessage = function(e){
+            let data = JSON.parse(e.data)
+
+
+            if(data.type === 'chat'){
+                let messages = document.getElementById('messages')
+                let messageElement = document.createElement("div");
+                messageElement.innerHTML = `<p>${data.message}</p>`;
+                messages.prepend(messageElement);
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+
+        let form = document.getElementById('form')
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            let message = e.target.message.value
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }))
+            form.reset()
+
+
+        })
+
+
+    </script>
+
+</body>
+</html>
