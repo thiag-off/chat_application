@@ -24,7 +24,7 @@
     </div>    
         <script lang="text/javascript">
         const roomName = JSON.parse(document.getElementById('room-name').textContent);   
-        let url = `wss://${window.location.host}/ws/socket-server/${roomName}/`
+        let url = `ws://${window.location.host}/ws/socket-server/${roomName}/`
         const chatSocket = new WebSocket(url)
         
         chatSocket.onmessage = function(e){
