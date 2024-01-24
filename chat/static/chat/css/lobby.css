@@ -1,0 +1,57 @@
+body{
+    font-family: 'Finger Paint', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    width: 30em;
+    height: 30em;    
+    padding: 2em;    
+    align-items: center;
+    color: white;
+    background-color: #1F1F1F;
+    border-radius: 25px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    justify-content: space-evenly;
+    
+}
+
+#room-name-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1em;  
+    
+    
+}
+
+input{
+    border-radius: 25px;
+    height: 1em;
+    padding: 10px;
+}
+
+#room-name-input, #nick-name-input{
+    
+    background-color: #444444;
+    border: 1px solid #ddd;
+    color: #FFFFFF;
+    font-family: 'Kanit', sans-serif;
+}
+
+#room-name-submit{
+    font-family: 'Finger Paint', sans-serif;
+    background-color: #4d6c70;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    border: 1px solid #ddd;
+    height: 4em;
+}

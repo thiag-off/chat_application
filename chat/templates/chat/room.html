@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Room</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'chat/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/css/styles.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Century+Gothic&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Kanit&display=swap" rel="stylesheet">
 
@@ -12,29 +12,40 @@
 <body>
     <div class="container">
         <div class="top-text">
-            <h1>Lets Chat !!</h1>
-            {{ room_name|json_script:"room-name" }}        
+            <h1 id="room-title"></h1>
+            {{ room_name|json_script:"room-name" }}   
+            {{ request.session.nickname|json_script:"nickname"}}     
         </div>
         <div class="chat-box">            
             <div id="messages"></div>
             <form id = "form">
-                <input type="text" name="message"/>
+                <input type="text" name="message" autocomplete="off"/>
             </form>
         </div>    
     </div>    
         <script lang="text/javascript">
+        
         const roomName = JSON.parse(document.getElementById('room-name').textContent);   
+        document.getElementById('room-title').innerHTML = `Room Code: ${roomName}` 
         let url = `wss://${window.location.host}/ws/socket-server/${roomName}/`
         const chatSocket = new WebSocket(url)
+        console.log(chatSocket)
         
         chatSocket.onmessage = function(e){
             let data = JSON.parse(e.data)
+            console.log(data)
 
 
             if(data.type === 'chat'){
                 let messages = document.getElementById('messages')
                 let messageElement = document.createElement("div");
-                messageElement.innerHTML = `<p>${data.message}</p>`;
+                if (data.nickname === JSON.parse(document.getElementById('nickname').textContent)){
+                    messageElement.className = "message-right"
+                }else{
+                    messageElement.className = "message-left";    
+                }
+                
+                messageElement.innerHTML = `<b>${data.nickname}: </b><p> ${data.message}</p>`;
                 messages.prepend(messageElement);
                 messages.scrollTop = messages.scrollHeight;
             }
@@ -48,8 +59,10 @@
         form.addEventListener('submit', (e) => {
             e.preventDefault()
             let message = e.target.message.value
+            let nickname = JSON.parse(document.getElementById('nickname').textContent)
             chatSocket.send(JSON.stringify({
-                'message': message
+                'message': message,
+                'nickname' : nickname
             }))
             form.reset()
 

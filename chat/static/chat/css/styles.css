@@ -1,0 +1,161 @@
+body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: #121212;
+   color: white;
+   font-family: 'Century Gothic', sans-serif;
+   margin: 1em/2;
+   margin-top: 2em;
+ }
+ 
+ .container {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   height: 80vh;
+   width: 600px;   
+   background-color: #1F1F1F;
+   border-radius: 10px;
+   padding: 20px;
+   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  }
+  
+  .top-text {
+    display: flex;
+    
+    
+  }
+  .chat-box {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    
+   
+ 
+ 
+   }
+ #messages {
+   display: flex;
+   flex-direction: column-reverse;
+   flex: 2;
+   overflow-y: auto;   
+   overflow-x: hidden;
+   font-family: 'Kanit', sans-serif;
+   color: white;
+   animation: pushIn 0.6s ease-out forwards;
+  
+   
+ }
+
+ .message-left {
+  display:flex;
+  flex-direction: column;
+  padding: 1em;
+  padding-bottom: 0em;
+  
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 1em;
+  margin-right: 1em;
+  width: max-content;
+  max-width: 33em;
+  animation: pushIn 0.1s ease-out forwards;  
+
+  background-color:#4d6c70;
+  border-radius: 25px;
+  border-bottom-left-radius: 0%;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+ }
+ 
+ .message-right {
+  display:flex;
+  flex-direction: column;
+  align-self:end;
+  justify-content: flex-start;
+  padding: 1em;
+  padding-bottom: 0em;
+  
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 1em;
+  margin-right: 1em;
+  
+  
+  width: max-content;
+  max-width: 33em;
+  animation: pushIn 0.1s ease-out forwards;
+  
+  
+  background-color:#6b7272;
+  border-radius: 25px;
+  border-bottom-right-radius: 0%;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+
+p, b {
+  
+  /*
+  width: clamp(45ch,50%,75ch);
+  */
+  overflow-wrap: break-word;
+
+  
+  
+
+}
+
+
+
+#form {
+  display: flex;
+  justify-content: space-between;
+  
+}
+ 
+ #form input[name="message"] {
+
+   flex: 1;
+   margin: 1em;
+   padding: 10px;
+   border-radius: 25px;
+   border: 1px solid #ddd;
+   background-color: #444444;
+   color: #FFFFFF;
+   
+   font-family: 'Kanit', sans-serif;
+ }
+
+  #messages {
+   scrollbar-width: thin;
+   scrollbar-color: #444444 #1F1F1F;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  #messages::-webkit-scrollbar {
+   width: 10px;
+  }
+  
+  #messages::-webkit-scrollbar-track {
+   background: #1F1F1F;
+  }
+  
+  #messages::-webkit-scrollbar-thumb {
+   background-color: #444444;
+   border-radius: 5px;
+  }
+
+
+
+  @keyframes pushIn {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+   }
+   
