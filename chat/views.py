@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -6,6 +7,7 @@ from django.shortcuts import render, redirect
 def room(request, room_name):
     return render( request, 'chat/room.html', {'room_name' : room_name})
 
+@csrf_exempt
 def index(request):
     if request.method == 'POST':
         nickname = request.POST['nickname']
